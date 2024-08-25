@@ -1,18 +1,23 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpService} from "../../http/http.service";
 import {Domains} from "../../http/types";
 import {catchError, Observable} from "rxjs";
-import {Post} from "./post.types";
+import {Post, PostListSearchParams} from "./post.types";
+import {HttpParams, HttpParamsOptions} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService) {
+  }
 
-  findAll(): Observable<Post[]> {
-    return this.httpService.get<Post[]>(Domains.Post).pipe(
+  findAll(searchParams: PostListSearchParams): Observable<Post[]> {
+    const params = new HttpParams({
+      fromObject: searchParams as unknown as HttpParamsOptions['fromObject']
+    });
+    return this.httpService.get<Post[]>(Domains.Post, {params}).pipe(
       catchError((err, caught) => {
         return caught;
       })
@@ -26,9 +31,5 @@ export class PostService {
         return caught;
       })
     )
-  }
-
-  test() {
-    const a = this.findAll()
   }
 }

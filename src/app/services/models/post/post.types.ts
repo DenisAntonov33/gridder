@@ -5,3 +5,8 @@ export interface Post {
   author: string;
   createdAt: Date;
 }
+
+export interface PostListSearchParams {
+  page: number;
+  limit: number;
+}

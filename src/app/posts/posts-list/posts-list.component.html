@@ -1,9 +1,17 @@
 <div>
   <h1>Posts list</h1>
   <div class="post-item" *ngFor="let post of (postList$ | async)">
-    <h4>{{post.title}}</h4>
-    <p>{{post.text}}</p>
-    <span>{{post.createdAt | date}}</span>
+    <h4>{{ post.title }}</h4>
+    <p>{{ post.text }}</p>
+    <span>{{ post.createdAt | date }}</span>
     <a [routerLink]="post.id">Read</a>
   </div>
+  <mat-paginator
+    [length]="postsCount"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="handlePaginatorEvent($event)"
+    aria-label="Select page">
+  </mat-paginator>
 </div>
