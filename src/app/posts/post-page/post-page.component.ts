@@ -1,10 +1,41 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {PostService} from "../../services/models/post/post.service";
+import {BehaviorSubject, filter, map, Observable, of, shareReplay, switchMap} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
+import {Post} from "../../services/models/post/post.types";
 
 @Component({
   selector: 'app-post-page',
   templateUrl: './post-page.component.html',
   styleUrl: './post-page.component.css'
 })
-export class PostPageComponent {
+export class PostPageComponent implements OnInit {
+  postTitle$: Observable<string> | null = null;
+  postText$: Observable<string> | null = null;
+  postAuthor$: Observable<string> | null = null;
+  postCreatedAt$: Observable<Date> | null = null;
+
+  isEditing$ = new BehaviorSubject(false);
+
+  constructor(private postService: PostService, private activatedRoute: ActivatedRoute) {
+  }
+
+  ngOnInit(): void {
+    const post$ = this.activatedRoute.paramMap.pipe(
+      map(map => map.get('id') ?? undefined),
+      filter(id => typeof id === 'string'),
+      switchMap<string, Observable<Post>>(id => this.postService.findById(id)),
+      shareReplay()
+    )
+
+    this.postTitle$ = post$.pipe(map(post => post.title));
+    this.postText$ = post$.pipe(map(post => post.text));
+    this.postAuthor$ = post$.pipe(map(post => post.author));
+    this.postCreatedAt$ = post$.pipe(map(post => post.createdAt));
+  }
+
+  editPost() {
+    this.isEditing$.next(true);
+  }
 
 }

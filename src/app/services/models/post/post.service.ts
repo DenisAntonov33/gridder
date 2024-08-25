@@ -14,6 +14,14 @@ export class PostService {
   findAll(): Observable<Post[]> {
     return this.httpService.get<Post[]>(Domains.Post).pipe(
       catchError((err, caught) => {
+        return caught;
+      })
+    )
+  }
+
+  findById(id: string): Observable<Post> {
+    return this.httpService.get<Post>(Domains.Post + '/' + id).pipe(
+      catchError((err, caught) => {
         console.log('err >>', err)
         return caught;
       })
