@@ -17,7 +17,9 @@ export class PostModel implements Post {
     this.text = postInput.text;
     this.title = postInput.title;
     this.authorLogin$ = usersMap$.pipe(
-      map(usersMap => usersMap.get(postInput.id)?.login ?? null)
+      map(usersMap => {
+        return usersMap.get(postInput.authorId)?.login ?? null;
+      })
     )
   }
 }

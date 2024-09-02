@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {AuthService} from "../services/auth/auth.service";
 import {map, Observable} from "rxjs";
-import {AsyncPipe, UpperCasePipe} from "@angular/common";
+import {AsyncPipe, TitleCasePipe, UpperCasePipe} from "@angular/common";
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +11,8 @@ import {AsyncPipe, UpperCasePipe} from "@angular/common";
     RouterLink,
     AsyncPipe,
     UpperCasePipe,
-    RouterLinkActive
+    RouterLinkActive,
+    TitleCasePipe
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'

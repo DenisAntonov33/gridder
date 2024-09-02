@@ -1,7 +1,7 @@
 <nav>
   <ul class="nav-list">
     @if (login$ | async) {
-      <li>Welcome {{login$ | async | uppercase}}</li>
+      <li>Welcome {{login$ | async | titlecase}}</li>
       <li><a (click)="logout()">Log out</a></li>
       <li><a [routerLink]="'create-post'" routerLinkActive="active">Create post</a></li>
     } @else {
