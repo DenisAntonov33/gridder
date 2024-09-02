@@ -2,11 +2,11 @@
   <ul class="nav-list">
     @if (login$ | async) {
       <li>Welcome {{login$ | async | uppercase}}</li>
-      <li><a [routerLink]="'create-post'">Create post</a></li>
+      <li><a [routerLink]="'create-post'" routerLinkActive="active">Create post</a></li>
     } @else {
-      <li><a [routerLink]="'signin'">Sign in</a></li>
-      <li><a [routerLink]="'signup'">Sign up</a></li>
+      <li><a [routerLink]="'signin'" routerLinkActive="active">Sign in</a></li>
+      <li><a [routerLink]="'signup'" routerLinkActive="active">Sign up</a></li>
     }
-    <li><a [routerLink]="'posts'">Post's list</a></li>
+    <li><a [routerLink]="'posts'" routerLinkActive="active">Post's list</a></li>
   </ul>
 </nav>
