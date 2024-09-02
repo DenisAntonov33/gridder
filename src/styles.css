@@ -7,9 +7,13 @@ h1, h2, h3, h4, h5, h6 {
   /*color: var(--bright-blue);*/
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .container {
-  min-width: 960px;
-  margin: 0 auto;
+  width: 960px;
+  padding: 0 8px;
 }
 
 .form-container {
@@ -21,4 +25,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .primary-btn {
   width: fit-content;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    width: 100%;
+  }
 }

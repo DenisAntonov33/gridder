@@ -1,9 +1,12 @@
 <h1>Posts list</h1>
-@for (post of (postList$ | async); track post.id) {
-  <post-list-item [post]="post"/>
-} @empty {
-  <a [routerLink]="'create-post'">Create your first post</a>
-}
+<section class="container">
+  @for (post of (postList$ | async); track post.id) {
+    <post-list-item [post]="post"/>
+  } @empty {
+    <a [routerLink]="'create-post'">Create your first post</a>
+  }
+</section>
+
 
 <mat-paginator
   [length]="postsCount"

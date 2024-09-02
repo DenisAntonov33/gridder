@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {PostService} from "../../services/models/post/post.service";
+import {PostService} from "../../../services/models/post/post.service";
 import {BehaviorSubject, filter, map, Observable, shareReplay, switchMap} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
-import {Post} from "../../services/models/post/post.types";
+import {Post} from "../../../services/models/post/post.types";
 
 @Component({
   selector: 'app-post-page',

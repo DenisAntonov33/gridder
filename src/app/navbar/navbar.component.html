@@ -1,0 +1,12 @@
+<nav>
+  <ul class="nav-list">
+    @if (login$ | async) {
+      <li>Welcome {{login$ | async | uppercase}}</li>
+      <li><a [routerLink]="'create-post'">Create post</a></li>
+    } @else {
+      <li><a [routerLink]="'signin'">Sign in</a></li>
+      <li><a [routerLink]="'signup'">Sign up</a></li>
+    }
+    <li><a [routerLink]="'posts'">Post's list</a></li>
+  </ul>
+</nav>

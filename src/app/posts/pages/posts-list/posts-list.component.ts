@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {PostService} from "../../services/models/post/post.service";
+import {PostService} from "../../../services/models/post/post.service";
 import {BehaviorSubject, Observable} from "rxjs";
-import {Post} from "../../services/models/post/post.types";
+import {Post} from "../../../services/models/post/post.types";
 import {PageEvent} from "@angular/material/paginator";
 
 @Component({

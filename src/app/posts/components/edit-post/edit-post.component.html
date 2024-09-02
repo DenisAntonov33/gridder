@@ -1,0 +1,18 @@
+<form class="form-container" [formGroup]="postEditForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input name="title" matInput matNativeControl formControlName="title">
+    @if (postEditForm.controls['title']?.invalid) {
+      <mat-error>Title is required</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Text</mat-label>
+    <textarea name="text" required matInput matNativeControl formControlName="text"></textarea>
+    @if (postEditForm.controls['text']?.errors?.['required']) {
+      <mat-error>Text is required</mat-error>
+    }
+  </mat-form-field>
+
+  <button [disabled]="postEditForm.invalid" type="submit" class="primary-btn" mat-flat-button>Save</button>
+</form>
