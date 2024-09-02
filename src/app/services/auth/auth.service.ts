@@ -17,10 +17,29 @@ export class AuthService {
     private storageService: StorageService,
   ) {}
 
-  async signUp(userPayload: UserPayload) {
+  async signUp(userPayload: UserPayload): Promise<void> {
     const user = await this.userService.create(userPayload);
     this._authUser.next(user);
     this.storageService.set(StorageKeys.Token, [user.login, user.password].join(AuthService.TOKEN_SEPARATOR));
+  }
+
+  async signIn(userPayload: UserPayload): Promise<void> {
+    try {
+      const user = await this.userService.fetchByLogin(userPayload.login);
+
+      if (!user) {
+        throw new Error('User not found')
+      }
+      if (user.password !== userPayload.password) {
+        throw new Error('Authorization failed')
+      }
+
+      this._authUser.next(user);
+      this.storageService.set(StorageKeys.Token, [user.login, user.password].join(AuthService.TOKEN_SEPARATOR));
+    } catch (err) {
+      console.debug(err);
+      throw err;
+    }
   }
 
   async isLoginExist(login: string): Promise<boolean> {

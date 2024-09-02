@@ -28,7 +28,6 @@ import {UserService} from "../services/user/user.service";
 export class SignUpComponent{
   constructor(
     private authService: AuthService,
-    private userService: UserService,
     private router: Router
   ) {}
 

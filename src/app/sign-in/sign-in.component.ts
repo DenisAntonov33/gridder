@@ -3,6 +3,9 @@ import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form
 import {MatInput, MatInputModule} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {FormsModule, NgForm} from "@angular/forms";
+import {AuthService} from "../services/auth/auth.service";
+import {Router} from "@angular/router";
+import {AsyncPipe} from "@angular/common";
 
 @Component({
   selector: 'app-sign-in',
@@ -14,7 +17,8 @@ import {FormsModule, NgForm} from "@angular/forms";
     MatLabel,
     MatInput,
     MatButton,
-    FormsModule
+    FormsModule,
+    AsyncPipe
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
@@ -22,8 +26,22 @@ import {FormsModule, NgForm} from "@angular/forms";
 export class SignInComponent {
   @ViewChild('signInForm', {}) signInForm!: NgForm;
 
-  onSubmit(form: NgForm) {
-    console.log('signInForm >>', this.signInForm)
-    console.log('form >>', form)
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {
+  }
+
+  async onSubmit(form: NgForm) {
+    if (form.invalid) return;
+
+    try {
+      await this.authService.signIn(form.value);
+      await this.router.navigate(['posts']);
+      form.controls['password'].setErrors(null);
+    } catch (err) {
+      console.debug('Error on submit >>', err);
+      form.controls['password'].setErrors({wrongCredentials: true});
+    }
   }
 }

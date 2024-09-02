@@ -11,10 +11,15 @@
     <mat-form-field>
       <mat-label>Password</mat-label>
       <input name="password" required matInput matNativeControl type="password" ngModel>
-      @if (signInForm.controls['password'].invalid) {
+      @if (signInForm.controls['password'].errors?.['required']) {
         <mat-error>Password is required</mat-error>
       }
+      @if (signInForm.controls['password'].errors?.['wrongCredentials']) {
+        <mat-error>Wrong password or login</mat-error>
+      }
+
     </mat-form-field>
+
     <button [disabled]="signInForm.invalid" type="submit" class="primary-btn" mat-flat-button>Sign in</button>
   </form>
 </div>
