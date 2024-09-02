@@ -11,10 +11,10 @@
     <mat-form-field>
       <mat-label>Password</mat-label>
       <input name="password" required matInput matNativeControl type="password" ngModel>
-      @if (signInForm.controls['password'].errors?.['required']) {
+      @if (signInForm.controls['password']?.errors?.['required']) {
         <mat-error>Password is required</mat-error>
       }
-      @if (signInForm.controls['password'].errors?.['wrongCredentials']) {
+      @if (signInForm.controls['password']?.errors?.['wrongCredentials']) {
         <mat-error>Wrong password or login</mat-error>
       }
 

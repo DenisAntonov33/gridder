@@ -37,7 +37,7 @@ export class SignInComponent {
 
     try {
       await this.authService.signIn(form.value);
-      await this.router.navigate(['posts']);
+      await this.router.navigate(['posts'], { replaceUrl: true });
       form.controls['password'].setErrors(null);
     } catch (err) {
       console.debug('Error on submit >>', err);

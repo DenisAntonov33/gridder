@@ -38,7 +38,7 @@ export class SignUpComponent{
 
     try {
       await this.authService.signUp(form.value);
-      await this.router.navigate(['posts']);
+      await this.router.navigate(['posts'], { replaceUrl: true });
     } catch (e) {
       console.debug('Error on submit >>', e);
     }
