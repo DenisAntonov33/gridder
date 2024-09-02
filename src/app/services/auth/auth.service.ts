@@ -15,12 +15,16 @@ export class AuthService {
   constructor(
     private userService: UserService,
     private storageService: StorageService,
-  ) {}
+  ) {
+  }
 
   async signUp(userPayload: UserPayload): Promise<void> {
     const user = await this.userService.create(userPayload);
     this._authUser.next(user);
-    this.storageService.set(StorageKeys.Token, [user.login, user.password].join(AuthService.TOKEN_SEPARATOR));
+    this.storageService.set(
+      StorageKeys.Token,
+      [user.login, user.password].join(AuthService.TOKEN_SEPARATOR)
+    );
   }
 
   async signIn(userPayload: UserPayload): Promise<void> {
@@ -35,7 +39,10 @@ export class AuthService {
       }
 
       this._authUser.next(user);
-      this.storageService.set(StorageKeys.Token, [user.login, user.password].join(AuthService.TOKEN_SEPARATOR));
+      this.storageService.set(
+        StorageKeys.Token,
+        [user.login, user.password].join(AuthService.TOKEN_SEPARATOR)
+      );
     } catch (err) {
       console.debug(err);
       throw err;

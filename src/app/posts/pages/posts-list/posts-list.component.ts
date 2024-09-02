@@ -32,10 +32,8 @@ export class PostsListComponent implements OnInit {
     this.fetchPosts();
   }
 
-  private fetchPosts(): void {
-    this.postService.fetchList({limit: this.pageSize, page: this.pageIndex + 1})
-      .subscribe(posts => {
-        this._postList$.next(posts);
-      });
+  private async fetchPosts(): Promise<void> {
+    const posts = await this.postService.fetchList({limit: this.pageSize, page: this.pageIndex + 1});
+    this._postList$.next(posts);
   }
 }

@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from "../../http/http.service";
 import {Domains} from "../../http/types";
-import {catchError, Observable} from "rxjs";
 import {Post, PostCreationPayload, PostListSearchParams, PostPayload} from "./post.types";
 import {HttpParams, HttpParamsOptions} from "@angular/common/http";
 import {AuthService} from "../../auth/auth.service";
@@ -33,23 +32,14 @@ export class PostService {
     return this.httpService.post<Post>(Domains.Post, post);
   }
 
-  fetchList(searchParams: PostListSearchParams): Observable<Post[]> {
+  fetchList(searchParams: PostListSearchParams): Promise<Post[]> {
     const params = new HttpParams({
       fromObject: searchParams as unknown as HttpParamsOptions['fromObject']
     });
-    return this.httpService.get<Post[]>(Domains.Post, {params}).pipe(
-      catchError((err, caught) => {
-        return caught;
-      })
-    )
+    return this.httpService.get<Post[]>(Domains.Post, {params})
   }
 
-  fetchById(id: string): Observable<Post> {
-    return this.httpService.get<Post>(Domains.Post + '/' + id).pipe(
-      catchError((err, caught) => {
-        console.log('err >>', err)
-        return caught;
-      })
-    )
+  fetchById(id: string): Promise<Post> {
+    return this.httpService.get<Post>(Domains.Post + '/' + id)
   }
 }
