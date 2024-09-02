@@ -1,0 +1,12 @@
+<div class="post-item">
+  <h4>{{ post.title }}</h4>
+  <p>{{ post.text }}</p>
+  <div class="post-footer">
+    <a [routerLink]="post.id">Read</a>
+    <div>
+      <span>{{ post.author }}. </span>
+      <span>{{ post.createdAt | date }}</span>
+    </div>
+  </div>
+  <hr>
+</div>

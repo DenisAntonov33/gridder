@@ -4,9 +4,10 @@ import {PostsListComponent} from "./posts-list/posts-list.component";
 import {PostPageComponent} from "./post-page/post-page.component";
 import {RouterLink} from "@angular/router";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
+import {PostListItemComponent} from "./post-list-item/post-list-item.component";
 
 @NgModule({
-  declarations: [PostsListComponent, PostPageComponent],
+  declarations: [PostsListComponent, PostListItemComponent, PostPageComponent],
   imports: [
     CommonModule,
     NgForOf,
