@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Post, PostCreationPayload} from "../../../services/models/post/post.types";
+import {PostInput, PostCreationPayload} from "../../../services/models/post/post.types";
 
 interface PostFormType {
   title: FormControl<string | null>;
@@ -22,7 +22,7 @@ export class EditPostComponent {
     })
   }
 
-  @Input() set post(post: Post) {
+  @Input() set post(post: PostInput) {
     if (!post) return;
 
     this.postEditForm.setValue({

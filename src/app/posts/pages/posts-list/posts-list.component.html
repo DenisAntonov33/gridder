@@ -3,7 +3,7 @@
   @for (post of (postList$ | async); track post.id) {
     <post-list-item [post]="post"/>
   } @empty {
-    <a [routerLink]="'create-post'">Create your first post</a>
+    <a [routerLink]="'/create-post'">Create your first post</a>
   }
 </section>
 

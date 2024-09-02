@@ -1,9 +1,15 @@
-export interface Post {
+import {Observable} from "rxjs";
+
+export interface PostInput {
   id: string;
   title: string;
   text: string;
-  author: string;
+  authorId: string;
   createdAt: Date;
+}
+
+export interface Post extends PostInput {
+  authorLogin$: Observable<string | null>;
 }
 
 export interface PostCreationPayload {
@@ -11,8 +17,8 @@ export interface PostCreationPayload {
   text: string;
 }
 
-export interface PostPayload extends PostCreationPayload {
-  author: string;
+export interface PostOutput extends PostCreationPayload {
+  authorId: string;
   createdAt: string;
 }
 

@@ -1,14 +1,24 @@
 import {Injectable} from '@angular/core';
+import {StorageKeys} from "./storage.types";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
+  getItem<Return>(key: StorageKeys): Return | undefined {
+    try {
+      const serializedData: string | null = sessionStorage.getItem(key);
 
-  constructor() {
+      if (!serializedData) return undefined;
+
+      return JSON.parse(serializedData);
+    } catch (e) {
+      console.debug('Error while retrieving data from storage >>', e)
+      return undefined;
+    }
   }
 
-  set(key: string, data: unknown) {
+  setItem(key: StorageKeys, data: unknown) {
     try {
       const serializedData = JSON.stringify(data);
       sessionStorage.setItem(key, serializedData)

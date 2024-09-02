@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {PostService} from "../../../services/models/post/post.service";
 import {BehaviorSubject, filter, map, Observable, shareReplay, switchMap} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
-import {Post} from "../../../services/models/post/post.types";
 import {fromPromise} from "rxjs/internal/observable/innerFrom";
+import {PostModel} from "../../../services/models/post/post.model";
 
 @Component({
   selector: 'app-post-page',
@@ -25,13 +25,13 @@ export class PostPageComponent implements OnInit {
     const post$ = this.activatedRoute.paramMap.pipe(
       map(map => map.get('id') ?? undefined),
       filter(id => typeof id === 'string'),
-      switchMap<string, Observable<Post>>(id => fromPromise(this.postService.fetchById(id))),
+      switchMap<string, Observable<PostModel>>(id => fromPromise(this.postService.fetchById(id))),
       shareReplay()
     )
 
     this.postTitle$ = post$.pipe(map(post => post.title));
     this.postText$ = post$.pipe(map(post => post.text));
-    this.postAuthor$ = post$.pipe(map(post => post.author));
+    this.postAuthor$ = post$.pipe(map(post => post.authorId));
     this.postCreatedAt$ = post$.pipe(map(post => post.createdAt));
   }
 

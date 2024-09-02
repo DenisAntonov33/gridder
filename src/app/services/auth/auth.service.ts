@@ -18,13 +18,21 @@ export class AuthService {
   ) {
   }
 
+  async initialAuth() {
+    try {
+      const userId = this.getToken();
+      if (!userId) return;
+
+      const user = await this.userService.fetchById(userId);
+      this.saveUserData(user);
+    } catch (e) {
+      console.debug('Initial auth failed with >>', e)
+    }
+  }
+
   async signUp(userPayload: UserPayload): Promise<void> {
     const user = await this.userService.create(userPayload);
-    this._authUser.next(user);
-    this.storageService.set(
-      StorageKeys.Token,
-      [user.login, user.password].join(AuthService.TOKEN_SEPARATOR)
-    );
+    this.saveUserData(user);
   }
 
   async signIn(userPayload: UserPayload): Promise<void> {
@@ -38,11 +46,7 @@ export class AuthService {
         throw new Error('Authorization failed')
       }
 
-      this._authUser.next(user);
-      this.storageService.set(
-        StorageKeys.Token,
-        [user.login, user.password].join(AuthService.TOKEN_SEPARATOR)
-      );
+      this.saveUserData(user);
     } catch (err) {
       console.debug(err);
       throw err;
@@ -51,7 +55,7 @@ export class AuthService {
 
   logout() {
     this.authUser$.next(null);
-    this.storageService.set(StorageKeys.Token, '');
+    this.storageService.setItem(StorageKeys.Token, '');
   }
 
   async isLoginExist(login: string): Promise<boolean> {
@@ -61,5 +65,20 @@ export class AuthService {
 
   get authUser$(): BehaviorSubject<User | null> {
     return this._authUser
+  }
+
+  private saveUserData(user: User) {
+    this._authUser.next(user);
+    this.storageService.setItem(
+      StorageKeys.Token,
+      [user.id, user.login, user.password].join(AuthService.TOKEN_SEPARATOR)
+    );
+  }
+
+  private getToken(): string | undefined {
+    const tokenData = this.storageService.getItem<string>(StorageKeys.Token);
+    if (!tokenData) return undefined;
+
+    return tokenData.split(AuthService.TOKEN_SEPARATOR)?.[0];
   }
 }

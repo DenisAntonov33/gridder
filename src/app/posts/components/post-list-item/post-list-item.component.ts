@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Post} from "../../../services/models/post/post.types";
+import {PostModel} from "../../../services/models/post/post.model";
 
 @Component({
   selector: 'post-list-item',
@@ -7,5 +7,5 @@ import {Post} from "../../../services/models/post/post.types";
   styleUrl: './post-list-item.component.css'
 })
 export class PostListItemComponent {
-  @Input({required: true}) post!: Post;
+  @Input({required: true}) post!: PostModel;
 }
