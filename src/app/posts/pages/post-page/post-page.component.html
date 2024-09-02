@@ -1,22 +1,9 @@
-<div *ngIf="!(isEditing$ | async)">
-  <h1>{{ postTitle$ | async }}</h1>
-  <p>{{ postText$ | async }}</p>
-  <p>{{ postAuthor$ | async }}</p>
-  <p>{{ postCreatedAt$ | async | date }}</p>
-  <button (click)="editPost()">Edit</button>
-</div>
-
-<div *ngIf="isEditing$ | async">
-  <div>
-    <input name="">
-  </div>
-  <div>
-    <input name="">
-  </div>
-  <div>
-    <input name="">
+<div class="container">
+  <div class="form-container">
+    <h1>{{ postTitle$ | async | titlecase }}</h1>
+    <p>{{ postText$ | async }}</p>
+    <p>{{ postAuthor$ | async | titlecase }}</p>
+    <p>{{ postCreatedAt$ | async | date }}</p>
+    <button (click)="editPost()" class="primary-btn" mat-flat-button>Edit</button>
   </div>
 </div>
-
-
-

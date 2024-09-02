@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {PostInput, PostCreationPayload} from "../../../services/models/post/post.types";
+import {PostCreationPayload} from "../../../services/models/post/post.types";
+import {PostModel} from "../../../services/models/post/post.model";
 
 interface PostFormType {
   title: FormControl<string | null>;
@@ -22,7 +23,7 @@ export class EditPostComponent {
     })
   }
 
-  @Input() set post(post: PostInput) {
+  @Input() set post(post: PostModel | null) {
     if (!post) return;
 
     this.postEditForm.setValue({
@@ -34,7 +35,6 @@ export class EditPostComponent {
   @Output() postSave = new EventEmitter<PostCreationPayload>();
 
   onSubmit() {
-    console.log('this.postEditForm.value >>', this.postEditForm.value)
     this.postSave.emit(this.postEditForm.value as PostCreationPayload);
   }
 }

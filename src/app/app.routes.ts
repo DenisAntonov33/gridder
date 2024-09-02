@@ -4,6 +4,7 @@ import {PostPageComponent} from "./posts/pages/post-page/post-page.component";
 import {SignInComponent} from "./sign-in/sign-in.component";
 import {SignUpComponent} from "./sign-up/sign-up.component";
 import {CreatePostPageComponent} from "./posts/pages/create-post-page/create-post-page.component";
+import {EditPostPageComponent} from "./posts/pages/edit-post-page/edit-post-page.component";
 
 export const routes: Routes = [
   {path: '', redirectTo: 'signin', pathMatch: 'full'},
@@ -11,6 +12,6 @@ export const routes: Routes = [
   {path: 'signin', component: SignInComponent},
   {path: 'posts', component: PostsListComponent},
   {path: 'create-post', component: CreatePostPageComponent},
-  {path: 'edit-post/:id', component: CreatePostPageComponent},
+  {path: 'edit-post/:id', component: EditPostPageComponent},
   {path: 'posts/:id', component: PostPageComponent},
 ];

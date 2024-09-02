@@ -20,4 +20,8 @@ export class HttpService {
   post<Return>(endpoint: string, body: unknown) {
     return lastValueFrom<Return>(this.httpClient.post<Return>(this.baseUrl + endpoint, body));
   }
+
+  put<Return>(endpoint: string, body: unknown) {
+    return lastValueFrom<Return>(this.httpClient.put<Return>(this.baseUrl + endpoint, body));
+  }
 }

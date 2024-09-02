@@ -13,7 +13,7 @@ export class PostModel implements Post {
   constructor(postInput: PostInput, usersMap$: Observable<Map<string, User>>) {
     this.id = postInput.id;
     this.authorId = postInput.authorId;
-    this.createdAt = postInput.createdAt;
+    this.createdAt = new Date(postInput.createdAt);
     this.text = postInput.text;
     this.title = postInput.title;
     this.authorLogin$ = usersMap$.pipe(

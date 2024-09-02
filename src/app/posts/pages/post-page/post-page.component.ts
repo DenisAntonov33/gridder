@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {PostService} from "../../../services/models/post/post.service";
-import {BehaviorSubject, filter, map, Observable, shareReplay, switchMap} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
+import {filter, map, Observable, shareReplay, switchMap} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
 import {fromPromise} from "rxjs/internal/observable/innerFrom";
 import {PostModel} from "../../../services/models/post/post.model";
 
 @Component({
-  selector: 'app-post-page',
+  selector: 'post-page',
   templateUrl: './post-page.component.html',
   styleUrl: './post-page.component.css'
 })
@@ -16,9 +16,11 @@ export class PostPageComponent implements OnInit {
   postAuthor$: Observable<string> | null = null;
   postCreatedAt$: Observable<Date> | null = null;
 
-  isEditing$ = new BehaviorSubject(false);
-
-  constructor(private postService: PostService, private activatedRoute: ActivatedRoute) {
+  constructor(
+    private postService: PostService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
@@ -31,12 +33,14 @@ export class PostPageComponent implements OnInit {
 
     this.postTitle$ = post$.pipe(map(post => post.title));
     this.postText$ = post$.pipe(map(post => post.text));
-    this.postAuthor$ = post$.pipe(map(post => post.authorId));
+    this.postAuthor$ = post$.pipe(
+      switchMap(post => post.authorLogin$),
+      filter(Boolean)
+    );
     this.postCreatedAt$ = post$.pipe(map(post => post.createdAt));
   }
 
   editPost() {
-    this.isEditing$.next(true);
+    this.router.navigate(['/edit-post', this.activatedRoute.snapshot.params['id']])
   }
-
 }

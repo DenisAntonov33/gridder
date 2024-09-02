@@ -4,7 +4,7 @@ import {PostCreationPayload} from "../../../services/models/post/post.types";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-create-post-page',
+  selector: 'create-post-page',
   templateUrl: './create-post-page.component.html',
 })
 export class CreatePostPageComponent {

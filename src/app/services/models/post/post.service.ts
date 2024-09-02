@@ -36,6 +36,19 @@ export class PostService {
       .then(this.mapPost);
   }
 
+  update(currentModel: PostModel, updatedPost: PostCreationPayload): Promise<PostModel> {
+    const {
+      authorLogin$,
+      createdAt,
+      id,
+      ...oldPost
+    } = currentModel;
+    const newCreatedAt = createdAt.toISOString();
+    const payload: PostOutput = {...oldPost, createdAt: newCreatedAt, ...updatedPost}
+    return this.httpService.put<PostInput>(Domains.Post + '/' + id, payload)
+      .then(this.mapPost);
+  }
+
   fetchList(searchParams: PostListSearchParams): Promise<PostModel[]> {
     const params = new HttpParams({
       fromObject: searchParams as unknown as HttpParamsOptions['fromObject']
