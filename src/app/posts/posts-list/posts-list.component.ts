@@ -33,7 +33,7 @@ export class PostsListComponent implements OnInit {
   }
 
   private fetchPosts(): void {
-    this.postService.findAll({limit: this.pageSize, page: this.pageIndex + 1})
+    this.postService.fetchList({limit: this.pageSize, page: this.pageIndex + 1})
       .subscribe(posts => {
         this._postList$.next(posts);
       });

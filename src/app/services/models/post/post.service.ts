@@ -13,7 +13,7 @@ export class PostService {
   constructor(private httpService: HttpService) {
   }
 
-  findAll(searchParams: PostListSearchParams): Observable<Post[]> {
+  fetchList(searchParams: PostListSearchParams): Observable<Post[]> {
     const params = new HttpParams({
       fromObject: searchParams as unknown as HttpParamsOptions['fromObject']
     });
@@ -24,7 +24,7 @@ export class PostService {
     )
   }
 
-  findById(id: string): Observable<Post> {
+  fetchById(id: string): Observable<Post> {
     return this.httpService.get<Post>(Domains.Post + '/' + id).pipe(
       catchError((err, caught) => {
         console.log('err >>', err)

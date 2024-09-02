@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {lastValueFrom} from "rxjs";
 
 type GetOptions = Parameters<InstanceType<typeof HttpClient>['get']>[1];
 
@@ -11,7 +12,11 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) { }
 
-  get<T>(endpoint: string, options?: GetOptions) {
-    return this.httpClient.get<T>(this.baseUrl + endpoint, { ...options })
+  get<Return>(endpoint: string, options?: GetOptions) {
+    return this.httpClient.get<Return>(this.baseUrl + endpoint, { ...options })
+  }
+
+  post<Return>(endpoint: string, body: unknown) {
+    return lastValueFrom(this.httpClient.post<Return>(this.baseUrl + endpoint, body))
   }
 }

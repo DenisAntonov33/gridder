@@ -1,3 +1,4 @@
 export enum Domains {
-  Post = 'post'
+  Post = 'post',
+  User = 'user'
 }

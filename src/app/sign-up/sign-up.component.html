@@ -1,0 +1,23 @@
+<div class="container">
+  <form class="form-container" #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm)">
+    <h1>Sign up</h1>
+    <mat-form-field>
+      <mat-label>Login</mat-label>
+      <input name="login" loginExists required matInput matNativeControl ngModel>
+      @if (signUpForm.controls['login']?.errors?.['loginExists']) {
+        <mat-error>Login is already existed</mat-error>
+      } @else if (signUpForm.controls['login']?.errors?.['required']) {
+        <mat-error>Login is required</mat-error>
+      }
+
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input name="password" required matInput matNativeControl type="password" ngModel>
+      @if (signUpForm.controls['password']?.invalid) {
+        <mat-error>Password is required</mat-error>
+      }
+    </mat-form-field>
+    <button [disabled]="signUpForm.invalid" type="submit" class="primary-btn" mat-flat-button>Sign up</button>
+  </form>
+</div>
