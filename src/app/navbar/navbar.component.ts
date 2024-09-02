@@ -23,4 +23,8 @@ export class NavbarComponent {
     this.login$ = authService.authUser$.pipe(map(user => user?.login))
   }
 
+  logout() {
+    this.authService.logout();
+    location.href = '';
+  }
 }

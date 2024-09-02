@@ -3,12 +3,18 @@
   justify-content: flex-end;
 
   list-style: none;
-  gap: 8px;
+  gap: 16px;
   margin: 0 8px;
   padding: 0;
 }
 
+li {
+  color: var(--pill-accent);
+  cursor: pointer;
+}
+
 a {
+  color: unset;
   text-decoration: none;
 }
 

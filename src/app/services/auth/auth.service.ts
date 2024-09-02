@@ -42,6 +42,11 @@ export class AuthService {
     }
   }
 
+  logout() {
+    this.authUser$.next(null);
+    this.storageService.set(StorageKeys.Token, '');
+  }
+
   async isLoginExist(login: string): Promise<boolean> {
     const user = await this.userService.fetchByLogin(login)
     return !!user
