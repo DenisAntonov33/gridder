@@ -18,6 +18,10 @@ export class AuthService {
   ) {
   }
 
+  get isUserLoggedIn(): boolean {
+    return !!this._authUser.value
+  }
+
   async initialAuth() {
     try {
       const userId = this.getToken();
