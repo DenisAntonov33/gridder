@@ -25,6 +25,9 @@ export class StorageService {
     } catch (e) {
       console.debug(`Error while saving data to store ${e}`)
     }
+  }
 
+  removeItem(key: StorageKeys): void {
+    sessionStorage.removeItem(key);
   }
 }

@@ -59,7 +59,7 @@ export class AuthService {
 
   logout() {
     this.authUser$.next(null);
-    this.storageService.setItem(StorageKeys.Token, '');
+    this.storageService.removeItem(StorageKeys.Token);
   }
 
   async isLoginExist(login: string): Promise<boolean> {
