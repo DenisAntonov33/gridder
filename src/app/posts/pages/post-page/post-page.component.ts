@@ -40,7 +40,15 @@ export class PostPageComponent implements OnInit {
     this.postCreatedAt$ = post$.pipe(map(post => post.createdAt));
   }
 
-  editPost() {
-    this.router.navigate(['/edit-post', this.activatedRoute.snapshot.params['id']])
+  async editPost() {
+    await this.router.navigate(['/edit-post', this.activatedRoute.snapshot.params['id']]);
+  }
+
+  async deletePost() {
+    if (confirm('Are you sure?')) {
+      const postId = this.activatedRoute.snapshot.params['id'];
+      await this.postService.delete(postId);
+      await this.router.navigate(['/posts']);
+    }
   }
 }

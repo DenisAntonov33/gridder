@@ -62,6 +62,10 @@ export class PostService {
       .then(this.mapPost)
   }
 
+  async delete(id: string) {
+    return this.httpService.delete(Domains.Post + '/' + id);
+  }
+
   private mapPost = (post: PostInput): PostModel => {
     return new PostModel(post, this.userStorage.usersMap$);
   }

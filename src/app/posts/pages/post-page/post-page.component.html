@@ -1,9 +1,14 @@
 <div class="container">
   <div class="form-container">
     <h1>{{ postTitle$ | async | titlecase }}</h1>
-    <p>{{ postText$ | async }}</p>
-    <p>{{ postAuthor$ | async | titlecase }}</p>
-    <p>{{ postCreatedAt$ | async | date }}</p>
-    <button (click)="editPost()" class="primary-btn" mat-flat-button>Edit</button>
+    <p><i>{{ postText$ | async }}</i></p>
+    <div>
+      <span>{{ postAuthor$ | async | titlecase }}. </span>
+      <span>{{ postCreatedAt$ | async | date }}</span>
+    </div>
+    <div class="card-buttons">
+      <button (click)="editPost()" class="primary-btn" mat-flat-button>Edit</button>
+      <button (click)="deletePost()" class="primary-btn delete-btn" mat-stroked-button>Delete</button>
+    </div>
   </div>
 </div>

@@ -24,4 +24,8 @@ export class HttpService {
   put<Return>(endpoint: string, body: unknown) {
     return lastValueFrom<Return>(this.httpClient.put<Return>(this.baseUrl + endpoint, body));
   }
+
+  delete<Return>(endpoint: string) {
+    return lastValueFrom<Return>(this.httpClient.delete<Return>(this.baseUrl + endpoint));
+  }
 }
