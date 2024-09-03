@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {PostService} from "../../../services/models/post/post.service";
-import {filter, map, Observable, shareReplay, switchMap} from "rxjs";
+import {combineLatest, filter, map, Observable, shareReplay, switchMap} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {fromPromise} from "rxjs/internal/observable/innerFrom";
 import {PostModel} from "../../../services/models/post/post.model";
+import {AuthService} from "../../../services/auth/auth.service";
+import {User} from "../../../services/user/user.types";
 
 @Component({
   selector: 'post-page',
@@ -11,14 +13,16 @@ import {PostModel} from "../../../services/models/post/post.model";
   styleUrl: './post-page.component.css'
 })
 export class PostPageComponent implements OnInit {
-  postTitle$: Observable<string> | null = null;
-  postText$: Observable<string> | null = null;
-  postAuthor$: Observable<string> | null = null;
-  postCreatedAt$: Observable<Date> | null = null;
+  postTitle$!: Observable<string> | null;
+  postText$!: Observable<string> | null;
+  postAuthor$!: Observable<string> | null;
+  postCreatedAt$!: Observable<Date> | null;
+  isAuthor$!: Observable<boolean>;
 
   constructor(
     private postService: PostService,
     private activatedRoute: ActivatedRoute,
+    private authService: AuthService,
     private router: Router
   ) {
   }
@@ -38,6 +42,10 @@ export class PostPageComponent implements OnInit {
       filter(Boolean)
     );
     this.postCreatedAt$ = post$.pipe(map(post => post.createdAt));
+
+    this.isAuthor$ = combineLatest<[User | null, PostModel]>([this.authService.authUser$, post$]).pipe(
+      map<[User | null, PostModel], boolean>(([user, post]) => user?.id === post.authorId),
+    );
   }
 
   async editPost() {
