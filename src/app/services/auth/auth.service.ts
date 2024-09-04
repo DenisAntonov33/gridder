@@ -10,7 +10,7 @@ import {BehaviorSubject} from "rxjs";
 })
 export class AuthService {
   private static readonly TOKEN_SEPARATOR = '_||_';
-  private readonly _authUser = new BehaviorSubject<User | null>(null);
+  private readonly _authUser$ = new BehaviorSubject<User | null>(null);
 
   constructor(
     private userService: UserService,
@@ -19,10 +19,10 @@ export class AuthService {
   }
 
   get isUserLoggedIn(): boolean {
-    return !!this._authUser.value
+    return !!this._authUser$.value
   }
 
-  async initialAuth() {
+  async initialAuth(): Promise<void> {
     try {
       const userId = this.getToken();
       if (!userId) return;
@@ -68,11 +68,11 @@ export class AuthService {
   }
 
   get authUser$(): BehaviorSubject<User | null> {
-    return this._authUser
+    return this._authUser$
   }
 
   private saveUserData(user: User) {
-    this._authUser.next(user);
+    this._authUser$.next(user);
     this.storageService.setItem(
       StorageKeys.Token,
       [user.id, user.login, user.password].join(AuthService.TOKEN_SEPARATOR)

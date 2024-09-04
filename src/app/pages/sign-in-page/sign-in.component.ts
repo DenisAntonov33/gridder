@@ -3,12 +3,12 @@ import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form
 import {MatInput, MatInputModule} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {FormsModule, NgForm} from "@angular/forms";
-import {AuthService} from "../services/auth/auth.service";
+import {AuthService} from "../../services/auth/auth.service";
 import {Router} from "@angular/router";
 import {AsyncPipe} from "@angular/common";
 
 @Component({
-  selector: 'app-sign-in',
+  selector: 'app-sign-in-page',
   standalone: true,
   imports: [
     MatFormField,
@@ -37,7 +37,7 @@ export class SignInComponent {
 
     try {
       await this.authService.signIn(form.value);
-      await this.router.navigate(['posts'], { replaceUrl: true });
+      await this.router.navigate(['/posts/list'], { replaceUrl: true });
       form.controls['password'].setErrors(null);
     } catch (err) {
       console.debug('Error on submit >>', err);

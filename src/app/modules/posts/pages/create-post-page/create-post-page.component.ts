@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {PostService} from "../../../services/models/post/post.service";
-import {PostCreationPayload} from "../../../services/models/post/post.types";
 import {Router} from "@angular/router";
+import {PostService} from "../../../../services/models/post/post.service";
+import {PostCreationPayload} from "../../../../services/models/post/post.types";
 
 @Component({
   selector: 'create-post-page',
@@ -15,7 +15,7 @@ export class CreatePostPageComponent {
   async onSubmit(newPost: PostCreationPayload) {
     try {
       await this.postService.create(newPost);
-      await this.router.navigate(['/posts'])
+      await this.router.navigate(['/posts/list'])
     } catch (err) {
       console.debug('err >>', err)
     }

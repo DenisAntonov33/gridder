@@ -26,6 +26,6 @@ export class NavbarComponent {
 
   logout() {
     this.authService.logout();
-    location.href = '';
+    location.href = 'signin';
   }
 }

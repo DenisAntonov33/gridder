@@ -21,6 +21,7 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   margin: 0 auto;
   width: 400px;
+  overflow-wrap: break-word;
 }
 
 .primary-btn {

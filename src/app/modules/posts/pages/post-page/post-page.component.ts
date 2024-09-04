@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {PostService} from "../../../services/models/post/post.service";
+import {PostService} from "../../../../services/models/post/post.service";
 import {combineLatest, filter, map, Observable, shareReplay, switchMap} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {fromPromise} from "rxjs/internal/observable/innerFrom";
-import {PostModel} from "../../../services/models/post/post.model";
-import {AuthService} from "../../../services/auth/auth.service";
-import {User} from "../../../services/user/user.types";
+import {AuthService} from "../../../../services/auth/auth.service";
+import {User} from "../../../../services/user/user.types";
+import {PostModel} from "../../../../services/models/post/post.model";
 
 @Component({
   selector: 'post-page',
@@ -49,14 +49,14 @@ export class PostPageComponent implements OnInit {
   }
 
   async editPost() {
-    await this.router.navigate(['/edit-post', this.activatedRoute.snapshot.params['id']]);
+    await this.router.navigate(['/posts/edit', this.activatedRoute.snapshot.params['id']]);
   }
 
   async deletePost() {
     if (confirm('Are you sure?')) {
       const postId = this.activatedRoute.snapshot.params['id'];
       await this.postService.delete(postId);
-      await this.router.navigate(['/posts']);
+      await this.router.navigate(['/posts/list']);
     }
   }
 }

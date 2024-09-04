@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {PostCreationPayload} from "../../../services/models/post/post.types";
-import {PostModel} from "../../../services/models/post/post.model";
+import {PostCreationPayload} from "../../../../services/models/post/post.types";
+import {PostModel} from "../../../../services/models/post/post.model";
 
 interface PostFormType {
   title: FormControl<string | null>;

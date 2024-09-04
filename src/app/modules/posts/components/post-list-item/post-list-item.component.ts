@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {PostModel} from "../../../services/models/post/post.model";
+import {PostModel} from "../../../../services/models/post/post.model";
 
 @Component({
   selector: 'post-list-item',

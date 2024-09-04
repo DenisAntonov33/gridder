@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {AsyncPipe, CommonModule, DatePipe, NgForOf} from '@angular/common';
 import {PostsListComponent} from "./pages/posts-list/posts-list.component";
 import {PostPageComponent} from "./pages/post-page/post-page.component";
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterModule} from "@angular/router";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import {PostListItemComponent} from "./components/post-list-item/post-list-item.component";
 import {CreatePostPageComponent} from "./pages/create-post-page/create-post-page.component";
@@ -12,6 +12,7 @@ import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {EditPostComponent} from "./components/edit-post/edit-post.component";
 import {EditPostPageComponent} from "./pages/edit-post-page/edit-post-page.component";
+import {postsRoutes} from "./posts.routes";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {EditPostPageComponent} from "./pages/edit-post-page/edit-post-page.compo
     EditPostComponent
   ],
   imports: [
+    RouterModule.forChild(postsRoutes),
     CommonModule,
     NgForOf,
     AsyncPipe,

@@ -2,7 +2,7 @@
   <h4>{{ post.title }}</h4>
   <p>{{ post.text }}</p>
   <div class="post-footer">
-    <a [routerLink]="post.id">Read</a>
+    <a [routerLink]="'/posts/' + post.id">Read</a>
     <div>
       <span>{{ (post.authorLogin$ | async | titlecase) ?? 'Unknown author' }}. </span>
       <span>{{ post.createdAt | date }}</span>

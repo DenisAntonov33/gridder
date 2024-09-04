@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {PostCreationPayload} from "../../../services/models/post/post.types";
-import {PostService} from "../../../services/models/post/post.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {filter, firstValueFrom, map, Observable, shareReplay, switchMap} from "rxjs";
-import {PostModel} from "../../../services/models/post/post.model";
 import {fromPromise} from "rxjs/internal/observable/innerFrom";
+import {PostModel} from "../../../../services/models/post/post.model";
+import {PostService} from "../../../../services/models/post/post.service";
+import {PostCreationPayload} from "../../../../services/models/post/post.types";
 
 @Component({
   selector: 'app-edit-post-page',
@@ -34,7 +34,7 @@ export class EditPostPageComponent implements OnInit {
     try {
       const postModel = await firstValueFrom(this.post$)
       await this.postService.update(postModel, newPost);
-      await this.router.navigate(['/posts'])
+      await this.router.navigate(['/posts/list'])
     } catch (err) {
       console.debug('err >>', err)
     }
