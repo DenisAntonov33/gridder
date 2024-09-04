@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {NavbarComponent} from "./navbar/navbar.component";
 
