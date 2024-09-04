@@ -4,8 +4,6 @@ import {StorageService} from "../storage/storage.service";
 import {StorageKeys} from "../storage/storage.types";
 
 export const addHeadersInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
-  console.debug('Interceptor works');
-
   const token = inject(StorageService).getItem(StorageKeys.Token);
   if (!token) {
     return next(req);

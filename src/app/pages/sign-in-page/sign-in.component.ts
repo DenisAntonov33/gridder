@@ -37,11 +37,11 @@ export class SignInComponent {
 
     try {
       await this.authService.signIn(form.value);
+      form.controls['password']?.setErrors(null);
       await this.router.navigate(['/posts/list'], { replaceUrl: true });
-      form.controls['password'].setErrors(null);
     } catch (err) {
       console.debug('Error on submit >>', err);
-      form.controls['password'].setErrors({wrongCredentials: true});
+      form.controls['password']?.setErrors({wrongCredentials: true});
     }
   }
 }

@@ -3,12 +3,15 @@ import {CreatePostPageComponent} from "./pages/create-post-page/create-post-page
 import {EditPostPageComponent} from "./pages/edit-post-page/edit-post-page.component";
 import {PostPageComponent} from "./pages/post-page/post-page.component";
 import {PostsListComponent} from "./pages/posts-list/posts-list.component";
-import {AuthGuardService} from "../../services/auth-guard/auth-guard.service"; // TODO should we move it to this module
+import {AuthGuardService} from "../../services/auth-guard/auth-guard.service";
+import {PostInitialLoadService} from "./services/post-initial-load/PostInitialLoadService"; // TODO should we move it to this module
 
 export const postsRoutes: Routes = [
   {
-    path: '', children: [
-      {path: 'list', component: PostsListComponent, canActivate: [AuthGuardService]},
+    path: '',
+    canActivateChild: [PostInitialLoadService],
+    children: [
+      {path: 'list', component: PostsListComponent},
       {path: 'create', component: CreatePostPageComponent, canActivate: [AuthGuardService]},
       {path: 'edit/:id', component: EditPostPageComponent, canActivate: [AuthGuardService]},
       {path: ':id', component: PostPageComponent},

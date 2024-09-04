@@ -10,7 +10,15 @@ import {UserStorageService} from "../user-storage/user-storage.service";
   providedIn: 'root'
 })
 export class UserService {
+  private isStarted = false;
   constructor(private httpService: HttpService, private userStorage: UserStorageService) {
+  }
+
+  async start() {
+    if (this.isStarted) return;
+
+    await this.fetchList();
+    this.isStarted = true;
   }
 
   async fetchById(id: string): Promise<User> {

@@ -11,20 +11,6 @@ import {UserService} from "./services/user/user.service";
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
   title = 'gridder';
-
-  constructor(private authService: AuthService, private userService: UserService) {
-  }
-
-  async ngOnInit() {
-    await Promise.all([
-      this.authService.initialAuth(),
-      this.initialUsersLoading()
-    ])
-  }
-
-  private async initialUsersLoading() {
-    await this.userService.fetchList()
-  }
 }

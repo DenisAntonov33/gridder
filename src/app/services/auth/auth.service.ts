@@ -9,6 +9,7 @@ import {BehaviorSubject} from "rxjs";
   providedIn: 'root'
 })
 export class AuthService {
+  private isStarted = false;
   private static readonly TOKEN_SEPARATOR = '_||_';
   private readonly _authUser$ = new BehaviorSubject<User | null>(null);
 
@@ -22,13 +23,16 @@ export class AuthService {
     return !!this._authUser$.value
   }
 
-  async initialAuth(): Promise<void> {
+  async start(): Promise<void> {
     try {
+      if (this.isStarted) return;
+
       const userId = this.getToken();
       if (!userId) return;
 
       const user = await this.userService.fetchById(userId);
       this.saveUserData(user);
+      this.isStarted = true;
     } catch (e) {
       console.debug('Initial auth failed with >>', e)
     }
