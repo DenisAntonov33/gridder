@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {AuthService} from "../services/auth/auth.service";
 import {map, Observable} from "rxjs";
@@ -15,6 +15,7 @@ import {AsyncPipe, TitleCasePipe, UpperCasePipe} from "@angular/common";
     TitleCasePipe
   ],
   templateUrl: './navbar.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {

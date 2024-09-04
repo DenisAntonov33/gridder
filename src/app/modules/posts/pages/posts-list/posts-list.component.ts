@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {PostService} from "../../../../services/models/post/post.service";
 import {BehaviorSubject, Observable} from "rxjs";
 import {PageEvent} from "@angular/material/paginator";
@@ -7,6 +7,7 @@ import {PostModel} from "../../../../services/models/post/post.model";
 @Component({
   selector: 'posts-list',
   templateUrl: './posts-list.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './posts-list.component.css'
 })
 export class PostsListComponent implements OnInit {

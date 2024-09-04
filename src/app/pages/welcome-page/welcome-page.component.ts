@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from "@angular/router";
 
 @Component({
@@ -8,6 +8,7 @@ import {RouterLink} from "@angular/router";
     RouterLink
   ],
   templateUrl: './welcome-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WelcomePageComponent {
 

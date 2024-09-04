@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewChild} from '@angular/core';
 import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInput, MatInputModule} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
@@ -21,6 +21,7 @@ import {AsyncPipe} from "@angular/common";
     AsyncPipe
   ],
   templateUrl: './sign-in.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './sign-in.component.css'
 })
 export class SignInComponent {

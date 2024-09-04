@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {PostCreationPayload} from "../../../../services/models/post/post.types";
 import {PostModel} from "../../../../services/models/post/post.model";
@@ -11,6 +11,7 @@ interface PostFormType {
 @Component({
   selector: 'edit-post',
   templateUrl: './edit-post.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './edit-post.component.css'
 })
 export class EditPostComponent {

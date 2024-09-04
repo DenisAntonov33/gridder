@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {PostService} from "../../../../services/models/post/post.service";
 import {PostCreationPayload} from "../../../../services/models/post/post.types";
@@ -6,6 +6,7 @@ import {PostCreationPayload} from "../../../../services/models/post/post.types";
 @Component({
   selector: 'create-post-page',
   templateUrl: './create-post-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreatePostPageComponent {
 

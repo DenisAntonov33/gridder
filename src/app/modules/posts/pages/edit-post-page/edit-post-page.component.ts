@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {filter, firstValueFrom, map, Observable, shareReplay, switchMap} from "rxjs";
 import {fromPromise} from "rxjs/internal/observable/innerFrom";
@@ -9,6 +9,7 @@ import {PostCreationPayload} from "../../../../services/models/post/post.types";
 @Component({
   selector: 'app-edit-post-page',
   templateUrl: './edit-post-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditPostPageComponent implements OnInit {
   post$!: Observable<PostModel>;
