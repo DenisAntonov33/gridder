@@ -4,7 +4,7 @@ import {EditPostPageComponent} from "./pages/edit-post-page/edit-post-page.compo
 import {PostPageComponent} from "./pages/post-page/post-page.component";
 import {PostsListComponent} from "./pages/posts-list/posts-list.component";
 import {AuthGuardService} from "../../services/auth-guard/auth-guard.service";
-import {PostInitialLoadService} from "./services/post-initial-load/PostInitialLoadService"; // TODO should we move it to this module
+import {PostInitialLoadService} from "./services/post-initial-load/PostInitialLoadService";
 
 export const postsRoutes: Routes = [
   {

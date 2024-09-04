@@ -23,7 +23,6 @@ import {UserService} from "../../services/user/user.service";
   ],
   templateUrl: './sign-up.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent{
   constructor(

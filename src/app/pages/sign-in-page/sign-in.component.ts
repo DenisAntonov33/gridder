@@ -22,7 +22,6 @@ import {AsyncPipe} from "@angular/common";
   ],
   templateUrl: './sign-in.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrl: './sign-in.component.css'
 })
 export class SignInComponent {
   @ViewChild('signInForm', {}) signInForm!: NgForm;

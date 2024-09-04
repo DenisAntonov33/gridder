@@ -8,7 +8,6 @@ import {NavbarComponent} from "./navbar/navbar.component";
   imports: [RouterOutlet, RouterLink, NavbarComponent],
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrl: './app.component.css'
 })
 export class AppComponent{
   title = 'gridder';
