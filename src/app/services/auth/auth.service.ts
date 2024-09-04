@@ -23,6 +23,10 @@ export class AuthService {
     return !!this._authUser$.value
   }
 
+  get authUser$(): BehaviorSubject<User | null> {
+    return this._authUser$
+  }
+
   async start(): Promise<void> {
     try {
       if (this.isStarted) return;
@@ -69,10 +73,6 @@ export class AuthService {
   async isLoginExist(login: string): Promise<boolean> {
     const user = await this.userService.fetchByLogin(login)
     return !!user
-  }
-
-  get authUser$(): BehaviorSubject<User | null> {
-    return this._authUser$
   }
 
   private saveUserData(user: User) {

@@ -35,6 +35,9 @@ export class EditPostComponent {
   @Output() postSave = new EventEmitter<PostCreationPayload>();
 
   onSubmit() {
+    if (this.postEditForm.invalid) {
+      return;
+    }
     this.postSave.emit(this.postEditForm.value as PostCreationPayload);
   }
 }

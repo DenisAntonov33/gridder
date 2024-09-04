@@ -16,6 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptorsFromDi(),
       withInterceptors([addHeadersInterceptor])),
-    provideAnimations(), provideAnimationsAsync()
+    provideAnimations(),
+    provideAnimationsAsync()
   ]
 };
