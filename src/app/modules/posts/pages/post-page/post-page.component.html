@@ -3,7 +3,7 @@
     <h1>{{ postTitle$ | async | titlecase }}</h1>
     <p><i>{{ postText$ | async }}</i></p>
     <div>
-      <span>{{ ((postAuthor$ | async) ?? 'Unknown author' | titlecase) }}. </span>
+      <span>{{ (postAuthor$ | async | unknownAuthor | titlecase) }}. </span>
       <span>{{ postCreatedAt$ | async | date }}</span>
     </div>
     @if (isAuthor$ | async) {

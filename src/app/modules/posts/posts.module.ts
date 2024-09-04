@@ -13,6 +13,7 @@ import {MatInput} from "@angular/material/input";
 import {EditPostComponent} from "./components/edit-post/edit-post.component";
 import {EditPostPageComponent} from "./pages/edit-post-page/edit-post-page.component";
 import {postsRoutes} from "./posts.routes";
+import {UnknownAuthorPipe} from "./pipes/unknown-author.pipe";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {postsRoutes} from "./posts.routes";
     PostPageComponent,
     CreatePostPageComponent,
     EditPostPageComponent,
-    EditPostComponent
+    EditPostComponent,
+    UnknownAuthorPipe,
   ],
   imports: [
     RouterModule.forChild(postsRoutes),
