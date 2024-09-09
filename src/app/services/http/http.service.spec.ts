@@ -38,7 +38,6 @@ describe('HttpService', () => {
 
     const req = httpTestingController.expectOne(`${baseUrl}${endpoint}?limit=20`);
     expect(req.request.method).toBe('GET');
-    console.log('req.request.params >>', req.request.params)
     expect(req.request.params.get('limit')).toBe('20');
 
     req.flush(mockResponse);

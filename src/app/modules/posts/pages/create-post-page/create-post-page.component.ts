@@ -9,6 +9,7 @@ import {PostCreationPayload} from "../../../../services/models/post/post.types";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreatePostPageComponent {
+  showAlert = false;
 
   constructor(private postService: PostService, private router: Router) {
   }
@@ -17,6 +18,7 @@ export class CreatePostPageComponent {
     try {
       await this.postService.create(newPost);
       await this.router.navigate(['/posts/list'])
+      this.showAlert && alert('Post was saved');
     } catch (err) {
       console.debug('err >>', err)
     }

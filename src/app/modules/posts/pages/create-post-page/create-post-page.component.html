@@ -1,6 +1,7 @@
 <div class="container">
   <div class="form-container">
     <h1>Create post</h1>
+    <p>Show alert on save <app-custom-checkbox [(ngModel)]="showAlert" /></p>
     <edit-post (postSave)="onSubmit($event)" />
   </div>
 </div>

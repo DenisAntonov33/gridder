@@ -14,6 +14,7 @@ import {EditPostComponent} from "./components/edit-post/edit-post.component";
 import {EditPostPageComponent} from "./pages/edit-post-page/edit-post-page.component";
 import {postsRoutes} from "./posts.routes";
 import {UnknownAuthorPipe} from "./pipes/unknown-author.pipe";
+import {CustomCheckboxComponent} from "../../common/custom-checkbox/custom-checkbox.component";
 
 @NgModule({
   declarations: [
@@ -25,23 +26,24 @@ import {UnknownAuthorPipe} from "./pipes/unknown-author.pipe";
     EditPostComponent,
     UnknownAuthorPipe,
   ],
-  imports: [
-    RouterModule.forChild(postsRoutes),
-    CommonModule,
-    NgForOf,
-    AsyncPipe,
-    DatePipe,
-    RouterLink,
-    MatPaginatorModule,
-    MatPaginator,
-    FormsModule,
-    MatButton,
-    MatError,
-    MatFormField,
-    MatInput,
-    MatLabel,
-    ReactiveFormsModule
-  ],
+    imports: [
+        RouterModule.forChild(postsRoutes),
+        CommonModule,
+        NgForOf,
+        AsyncPipe,
+        DatePipe,
+        RouterLink,
+        MatPaginatorModule,
+        MatPaginator,
+        FormsModule,
+        MatButton,
+        MatError,
+        MatFormField,
+        MatInput,
+        MatLabel,
+        ReactiveFormsModule,
+        CustomCheckboxComponent
+    ],
 })
 export class PostsModule {
 }
